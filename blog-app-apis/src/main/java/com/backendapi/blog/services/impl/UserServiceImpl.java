@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.backendapi.blog.exceptions.*;
 import com.backendapi.blog.entities.User;
 import com.backendapi.blog.payloads.UserDto;
 import com.backendapi.blog.repositories.UserRepo;
 import com.backendapi.blog.services.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
