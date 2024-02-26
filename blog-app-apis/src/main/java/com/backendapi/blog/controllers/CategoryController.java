@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backendapi.blog.services.CategoryService;
+
+import jakarta.validation.Valid;
+
 import com.backendapi.blog.payloads.ApiResponse;
 import com.backendapi.blog.payloads.CategoryDto;
 
@@ -27,7 +30,7 @@ public class CategoryController {
 	
 	//create
 	@PostMapping("/")
-	public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto cateogoryDto){
+	public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto cateogoryDto){
 		
 		CategoryDto createCategory = this.categoryService.createCategory(cateogoryDto);
 		return new ResponseEntity<CategoryDto>(createCategory, HttpStatus.CREATED);
@@ -36,7 +39,7 @@ public class CategoryController {
 	
 	//update
 	@PutMapping("/{catId}")
-	public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto cateogoryDto,@PathVariable Integer catId){
+	public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto cateogoryDto,@PathVariable Integer catId){
 		
 		CategoryDto updateCategory = this.categoryService.updateCategory(cateogoryDto,catId);
 		return new ResponseEntity<CategoryDto>(updateCategory, HttpStatus.OK);
