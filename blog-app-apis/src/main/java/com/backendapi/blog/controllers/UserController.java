@@ -19,6 +19,8 @@ import com.backendapi.blog.payloads.ApiResponse;
 import com.backendapi.blog.payloads.UserDto;
 import com.backendapi.blog.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -29,7 +31,7 @@ public class UserController {
 	
 	//POST - create user
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
 		
 		UserDto createUserDto = this.userService.createUser(userDto);
 		return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
@@ -39,7 +41,7 @@ public class UserController {
 	//PUT - update user
 	
 	@PutMapping("/{userId}")  //here {userId} is path URI variable tells which table we have to update 
-	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable("userId") Integer uid){
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,@PathVariable("userId") Integer uid){
 		
 		UserDto updatedUser = this.userService.uodateUser(userDto, uid);
 		return ResponseEntity.ok(updatedUser);
